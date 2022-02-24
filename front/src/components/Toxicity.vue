@@ -5,7 +5,7 @@
         <h1>Toxicity analyzer</h1>
       </div>
     </div>
-    <div class="row mb-3">
+    <div class="row mb-5">
       <div class="col-12 col-md-8 offset-md-2">
         <div id="form">
           <div class="form-floating mb-4">
@@ -38,7 +38,13 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <div v-if="result" id="result">The text entered is {{ result }}</div>
+        <div v-if="error" id="error">An error happened</div>
+        <div v-else-if="result" id="result">
+          <h4 class="fw-bold mb-2">Toxicity statitics :</h4>
+          <div v-for="(proba, label) in result" :key="proba">
+            <span class="fw-bold text-capitalize">{{ stringify(label) }}</span> : {{ toPercentage(proba) }}%
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -55,23 +61,37 @@ export default {
     const result = ref(null);
     const message = ref("");
     const submitting = ref(false);
+    const error = ref(false);
 
     return {
       message,
       result,
       submitting,
+      error,
     };
   },
   methods: {
     async submit() {
       this.result = "";
+      this.error = false;
       this.submitting = true;
-      const response = await axios.post("http://localhost:8000/get_toxicity", {
-        text: this.message,
-      });
-      this.result = response.data.message;
-      this.submitting = false;
+      try {
+        const response = await axios.post("http://localhost:8000/get_toxicity", {
+          text: this.message,
+        });
+        this.result = response.data.result;
+        this.submitting = false;
+      } catch (e) {
+        this.error = true;
+        this.submitting = false;
+      }
     },
+    stringify(label) {
+      return label.replace(/_/g, " ")
+    },
+    toPercentage(proba) {
+      return (proba * 100).toFixed(2)
+    }
   },
 };
 </script>
@@ -81,15 +101,14 @@ export default {
 .container {
   padding-top: 100px;
 }
-textarea{
-  /*color: #cccdda;*/
+
+.btn-custom {
+  background: #24cc88 !important;
+  border-color: #24cc88 !important;
+  color: #fff !important;
 }
-.btn-custom{
-  background: #24cc88!important;
-  border-color: #24cc88!important;
-  color: #fff!important;
-}
-textarea.has-text{
-  border: 3px solid #24cc88!important;
+
+textarea.has-text {
+  border: 3px solid #24cc88 !important;
 }
 </style>
