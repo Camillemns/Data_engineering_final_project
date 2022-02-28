@@ -9,9 +9,6 @@ pipeline {
         stage('Git') { 
             steps {
                 bat 'git status'
-                bat 'git pull'
-                bat 'git checkout dev'
-                bat 'git pull'
             }
         }
         stage('Launch Docker Build') {
@@ -31,7 +28,8 @@ pipeline {
         }
         stage('Test back') { 
             steps {
-                echo "test front"
+                echo "test back"
+                bat 'python --version'
             }
         }
     }
