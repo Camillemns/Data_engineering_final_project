@@ -1,14 +1,29 @@
 pipeline {
     agent any
     stages {
-        stage('Trigger Check') { 
+        stage('Git pull') { 
             steps {
-                echo "checked"
+                bat  'dir'
             }
         }
-        stage('Step 2') { 
+        stage('Launch Docker Build') {
             steps {
-                echo "step 2"
+                bat 'docker-compose build'
+            }
+        }
+        stage('Launch Docker Build') { 
+            steps {
+                bat 'docker-compose up -d'
+            }
+        }
+        stage('Test front') { 
+            steps {
+                echo "test front"
+            }
+        }
+        stage('Test back') { 
+            steps {
+                echo "test front"
             }
         }
     }
