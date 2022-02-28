@@ -24,7 +24,8 @@ pipeline {
         }
         stage('Test back') {
             steps {
-                bat 'SET PATH = %pythonpath%'
+                bat 'SET PATH=%PATH%;C:/Users/camil/AppData/Local/Programs/Python/Python39/'
+                bat 'python -m pip install requests'
                 bat 'python app_test.py"'
             }
         }
