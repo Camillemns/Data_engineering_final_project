@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('ls') { 
             steps {
-                bat 'ls'
+                bat 'dir'
             }
         }
         stage('Git') { 
