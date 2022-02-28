@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage('ls') { 
+            steps {
+                bat 'ls'
+            }
+        }
         stage('Git') { 
             steps {
                 bat 'git status'
