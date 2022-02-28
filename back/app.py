@@ -35,4 +35,6 @@ def read_root():
 @app.post("/get_toxicity/")
 async def prediction(data: PredictionData):
     p = get_model_prediction(items['model'], data.text)
-    return {"message": p}
+    for k, v in p.items():
+        p[k] = float(v)
+    return {"result": p}

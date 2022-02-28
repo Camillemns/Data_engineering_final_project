@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Git') { 
             steps {
+                bat 'git status'
                 bat 'git pull'
                 bat 'git checkout dev'
                 bat 'git pull'

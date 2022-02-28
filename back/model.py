@@ -27,9 +27,7 @@ def get_model_prediction(model,text):
     
     Returns : Best score of toxicity
     """
-    pred = prediction_toxicity(model,text)
-    max_pred = max(pred, key=pred.get)
-    return max_pred, pred[max_pred]
+    return prediction_toxicity(model,text)
 
 if __name__ == '__main__':
     print('Prediction')
