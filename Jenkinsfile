@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Test back') { 
             steps {
-                bat 'docker-compose run back bash -c "ls -a && sleep 60 && python app_test.py"'
+                bat 'docker-compose run back bash -c "ls -a && sleep 200 && python app_test.py"'
             }
         }
         stage('Launch Docker Build') {
