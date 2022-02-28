@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Test back') {
             steps {
-                bat 'SET PATH = pythonpath'
+                bat 'SET PATH = %pythonpath%'
                 bat 'python app_test.py"'
             }
         }
