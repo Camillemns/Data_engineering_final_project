@@ -24,6 +24,7 @@ pipeline {
         }
         stage('Test back') {
             steps {
+                bat 'SET PATH = C:/Users/camil/AppData/Local/Programs/Python/Python310'
                 bat 'python app_test.py"'
             }
         }
