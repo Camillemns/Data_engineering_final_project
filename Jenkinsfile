@@ -1,9 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('Git pull') { 
+        stage('Git') { 
             steps {
-                bat  'dir'
+                bat 'git pull'
+                bat 'git checkout dev'
+                bat 'git pull'
             }
         }
         stage('Launch Docker Build') {
