@@ -4,6 +4,7 @@ pipeline {
         stage('ls') { 
             steps {
                 bat 'dir'
+                bat 'cd back && dir'
             }
         }
         stage('Git') { 
