@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test back') { 
             steps {
-                bat 'docker-compose run back bash -c "./is_running.sh && python app_test.py"'
+                bat 'docker-compose run back bash -c "ls && ./is_running.sh && python app_test.py"'
             }
         }
         stage('Launch Docker Build') {
