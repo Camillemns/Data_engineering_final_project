@@ -1,5 +1,4 @@
 pipeline {
-    agent { docker { image 'python:3.6' } }
     stages {
         stage('ls') { 
             steps {
@@ -11,6 +10,11 @@ pipeline {
                 bat 'git status'
             }
         }
+        stage('Test back') { 
+            steps {
+                bat 'docker-compose run back bash -c 'python app_test.py''
+            }
+        }
         stage('Launch Docker Build') {
             steps {
                 bat 'docker-compose build'
@@ -19,17 +23,6 @@ pipeline {
         stage('Launch Docker Compose') { 
             steps {
                 bat 'docker-compose up -d'
-            }
-        }
-        stage('Test front') { 
-            steps {
-                echo "test front"
-            }
-        }
-        stage('Test back') { 
-            steps {
-                echo "test back"
-                bat 'python --version'
             }
         }
     }
