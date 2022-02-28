@@ -1,5 +1,6 @@
 FROM python:3.6
 WORKDIR /code
+COPY is_running.sh ./
 COPY * ./
 RUN pip install -r requirements.txt
 EXPOSE 8000
