@@ -5,10 +5,14 @@ services:
     ports:
       - "8000:8000"
       - "8010:8010"
+    networks:
+      - monitor-net
   front:
     build: ./front
     ports:
       - "8070:8070"
+    networks:
+      - monitor-net
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -17,8 +21,18 @@ services:
     volumes:
       - "monitoring:/etc/prometheus/"
     restart: always
+    networks:
+      - monitor-net
+  node_exporter:
+    image: prom/node-exporter
+    container_name: node-exporter
+    ports:
+      - 9100:9100
+    restart: always
+    networks:
+      - monitor-net
   grafana:
-    image: grafana/grafana:6.7.2
+    image: grafana/grafana
     container_name: grafana
     volumes:
       - grafana_data:/var/lib/grafana
