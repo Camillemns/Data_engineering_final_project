@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from model import prediction_toxicity, load_model,get_model_prediction
 from pydantic import BaseModel
+from prometheus_client import start_http_server, Counter, Gauge, Summary, Histogram
 
 app = FastAPI()
 
@@ -17,6 +18,7 @@ app.add_middleware(
 
 items = {}
 
+start_http_server(8010)
 
 class PredictionData(BaseModel):
     text: str
@@ -26,6 +28,7 @@ class PredictionData(BaseModel):
 async def startup_event():
     model = load_model('original')
     items["model"] = model
+
 
 @app.get("/")
 def read_root():

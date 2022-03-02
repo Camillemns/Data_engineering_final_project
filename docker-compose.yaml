@@ -4,7 +4,36 @@ services:
     build: ./back
     ports:
       - "8000:8000"
+      - "8010:8010"
   front:
     build: ./front
     ports:
       - "8070:8070"
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - "monitoring:/etc/prometheus/"
+    restart: always
+  grafana:
+    image: grafana/grafana:6.7.2
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      - monitor-net
+volumes:
+  monitoring: {}
+  grafana_data: {}
+networks:
+  monitor-net: {}
