@@ -18,6 +18,7 @@ module.exports = {
     appContainer: '#app'
   },
 
+  /*
   // Or a page objects can also have sections
   sections: {
     app: {
@@ -49,4 +50,5 @@ module.exports = {
       }
     }
   }
+   */
 }

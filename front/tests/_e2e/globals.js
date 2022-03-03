@@ -20,6 +20,8 @@ module.exports = {
   // expect assertions
   waitForConditionTimeout: 5000,
 
+
+
   'default': {
     /*
     The globals defined here are available everywhere in any test env
@@ -30,6 +32,14 @@ module.exports = {
       return 'I\'m a method';
     }
     */
+
+    webdriver: {
+      port: 8060,
+    },
+
+    selenium: {
+      port: 8060,
+    },
   },
 
   'firefox': {
