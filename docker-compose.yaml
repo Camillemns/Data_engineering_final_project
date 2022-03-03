@@ -19,7 +19,8 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - "monitoring:/etc/prometheus/"
+      - monitoring:/etc/prometheus
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
     restart: always
     networks:
       - monitor-net
