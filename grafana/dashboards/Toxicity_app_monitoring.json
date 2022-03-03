@@ -21,7 +21,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -99,7 +98,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "vfyFMNYnk"
+            "uid": "P3FEB00294C5CB577"
           },
           "exemplar": true,
           "expr": "node_filesystem_size_bytes{job=\"node_exporter\", instance=\"node_exporter:9100\"} - node_filesystem_avail_bytes{job=\"node_exporter\", instance=\"node_exporter:9100\"}",
@@ -184,7 +183,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "vfyFMNYnk"
+            "uid": "P3FEB00294C5CB577"
           },
           "exemplar": true,
           "expr": "rate(process_virtual_memory_bytes[1m])",
@@ -270,7 +269,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "vfyFMNYnk"
+            "uid": "P3FEB00294C5CB577"
           },
           "exemplar": true,
           "expr": "avg without(cpu)(irate(node_cpu_seconds_total{job=\"node_exporter\", instance=\"node_exporter:9100\", mode!=\"idle\"}[1m]))",
@@ -298,6 +297,6 @@
   "timezone": "",
   "title": "Monitoring of toxicity application",
   "uid": "XIEBTOYnz",
-  "version": 9,
+  "version": 1,
   "weekStart": ""
 }
