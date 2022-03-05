@@ -13,16 +13,18 @@
                 class="form-control"
                 v-model="message"
                 placeholder="Enter your sentence"
-                id="floatingTextarea2"
+                id="sentence"
                 style="height: 100px"
                 :class="`${message ? 'has-text' : ''}`"
             ></textarea>
-            <label for="floatingTextarea2">Enter your sentence</label>
+            <label for="sentence">Enter your sentence</label>
           </div>
           <button
               v-on:click="submit"
               class="btn btn-custom px-5 py-2 rounded-pill"
               :disabled="submitting"
+              type="submit"
+              id="submit"
           >
             <span
                 v-if="submitting"
@@ -39,9 +41,9 @@
     <div class="row">
       <div class="col-12">
         <div v-if="error" id="error">An error happened</div>
-        <div v-else-if="result" id="result">
+        <div v-else-if="result">
           <h4 class="fw-bold mb-2">Toxicity statitics :</h4>
-          <div v-for="(proba, label) in result" :key="proba">
+          <div v-for="(proba, label) in result" :key="proba" id="result">
             <span class="fw-bold text-capitalize">{{ stringify(label) }}</span> : {{ toPercentage(proba) }}%
           </div>
         </div>
