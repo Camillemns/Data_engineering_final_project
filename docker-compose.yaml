@@ -8,3 +8,8 @@ services:
     build: ./front
     ports:
       - "8070:8070"
+  tester:
+    build: ./test
+    depends_on:
+      - back
+    command: ["./wait-for-it.sh", "back:8000", "--timeout=0", "--", "python", "app_test.py"]
