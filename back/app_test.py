@@ -1,6 +1,7 @@
 import unittest
 import requests
 
+
 class Test(unittest.TestCase):
     def test_response_time(self):
         data = {'text':'Fuck your self, i hope you will die !'}
@@ -16,6 +17,7 @@ class Test(unittest.TestCase):
         for i in range(1000):
             resp = requests.get('http://back:8000/')
             self.assertEqual(resp.status_code, 200)
+
 
 if __name__ == '__main__':
     unittest.main()
