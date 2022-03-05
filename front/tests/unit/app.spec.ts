@@ -14,12 +14,13 @@ describe('Toxicity.vue', () => {
 
 
   jest.mock('axios')
+  jest.setTimeout(30000);
 
   it('fetches async when a button is clicked', async () => {
     const wrapper = shallowMount(Toxicity)
-    wrapper.find('button').trigger('click')
-    await sleep(1000)
+    await wrapper.find('#submit').trigger('click')
+    await sleep(10000)
     await flushPromises()
-    expect(wrapper.find('#result').text()).toMatch(/\b(?:positive|negative|neutral)\b/g)
+    expect(wrapper.find('#result').text()).toMatch(/\b(?:toxicity|severe)\b/g)
   })
 })
