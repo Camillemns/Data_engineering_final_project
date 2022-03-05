@@ -19,15 +19,12 @@ pipeline {
         }
         stage('Launch Docker Compose') {
             steps {
-                bat 'docker-compose up -d'
+                bat 'docker-compose up -d front back'
             }
         }
-        stage('Test back') {
+        stage('Stress test back') {
             steps {
-                bat 'SET PATH=%PATH%;C:/Users/camil/AppData/Local/Programs/Python/Python39/'
-                bat 'python --version'
-                bat 'python -m pip install requests'
-                bat 'python app_test.py'
+                bat 'docker-compose up tester'
             }
         }
     }
