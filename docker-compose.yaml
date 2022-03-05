@@ -21,6 +21,17 @@ services:
     volumes:
       - monitoring:/etc/prometheus
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/rules.yml:/etc/prometheus/rules.yml
+    restart: always
+    networks:
+      - monitor-net
+  alerting:
+    image: prom/alertmanager
+    container_name: alert
+    ports:
+      - 9093:9093
+    volumes:
+      - ./monitoring/alertmanager.yml:/alertmanager.yml
     restart: always
     networks:
       - monitor-net

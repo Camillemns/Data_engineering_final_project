@@ -1,0 +1,9 @@
+global:
+  smtp_smarthost: '<your smtp email provider>'
+  smtp_from: '<your_email@example.com>'
+route:
+  receiver: '<receiver_email@example.com>'
+receivers:
+- name: '<receiver_email@example.com>'
+  email_configs:
+    - to: '<receiver_email@example.com>'
