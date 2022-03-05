@@ -1,6 +1,5 @@
 import unittest
-import requests
-from model import prediction_toxicity, load_model,get_model_prediction
+from model import prediction_toxicity, load_model
 
 model = load_model('original')
 text = 'Fuck you !'
