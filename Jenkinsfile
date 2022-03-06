@@ -31,7 +31,7 @@ pipeline {
         }
         stage('End to end test') {
             steps {
-                bat 'cd front && npx cypress run'
+                bat 'cd front && npx vue-cli-service test:e2e --headless'
             }
         }
     }
