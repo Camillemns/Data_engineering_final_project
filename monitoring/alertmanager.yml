@@ -1,0 +1,11 @@
+global:
+  smtp_smarthost: 'localhost:25'
+  smtp_from: 'app@localhost.com'
+route:
+  receiver: 'alert@localhost.com'
+receivers:
+- name: 'alert@localhost.com'
+  email:
+    - to: 'alert@localhost.com'
+      tls_config:
+        insecure_skip_verify: true
