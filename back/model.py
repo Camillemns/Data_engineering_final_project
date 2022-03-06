@@ -1,4 +1,4 @@
-import pandas as pd 
+import pandas as pd
 from detoxify import Detoxify
 
 def load_model(model_name):

@@ -59,6 +59,10 @@ services:
       - 3000:3000
     networks:
       - monitor-net
+  tester:
+    build: ./test
+    depends_on:
+      - back
 volumes:
   monitoring: {}
   grafana_data: {}
