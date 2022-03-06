@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+        stage('Git') {
+            steps {
+                bat 'git status'
+                bat 'git branch'
+            }
+        }
         stage('See the repository') {
             steps {
                 bat 'dir'
