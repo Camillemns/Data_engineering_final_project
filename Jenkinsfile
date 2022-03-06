@@ -47,6 +47,7 @@ pipeline {
         stage('Launch monitoring') {
             steps {
                 bat 'echo "launch monitoring"'
+                bat 'docker-compose up -d prometheus alerting node_exporter grafana'
             }
         }
         stage('Stress test back') {
