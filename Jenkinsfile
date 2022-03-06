@@ -33,7 +33,7 @@ pipeline {
             steps {
                 bat 'echo "launch monitoring"'
                 git branch: '%BRANCH%',
-                    url: 'https://github.com/Camillemns/TP_6_dataEngineering.git/'
+                    url: 'https://github.com/Camillemns/Data_engineering_final_project.git/'
                 bat 'dir'
                 bat 'git config --global user.email "jenkins@localhost"'
                 bat 'git config --global user.name "jenkins"'
@@ -42,7 +42,7 @@ pipeline {
                 bat 'git checkout dev'
                 bat 'git merge %BRANCH%'
                 withCredentials([string(credentialsId: 'personal_access_token', variable: 'token')]) {
-                    bat 'git push https://%token%@github.com/Camillemns/TP_6_dataEngineering.git'
+                    bat 'git push https://%token%@Camillemns/Data_engineering_final_project.git'
                 }
             }
         }
