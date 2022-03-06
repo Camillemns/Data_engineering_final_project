@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('See the repository') {
             steps {
-                bat 'ls'
-                bat 'cd front && ls'
+                bat 'dir'
+                bat 'cd front && dir'
             }
         }
         stage('Launch Docker Build') {
@@ -20,7 +20,7 @@ pipeline {
         stage('Unit test front') {
             steps {
                 bat 'cd front && npm install'
-                bat 'ls'
+                bat 'dir'
                 bat 'npm run test:unit'
             }
         }
@@ -32,7 +32,7 @@ pipeline {
         }
         stage('End to end test') {
             steps {
-                bat 'ls'
+                bat 'dir'
                 bat 'npm run test:e2e'
             }
         }
