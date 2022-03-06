@@ -63,7 +63,7 @@ pipeline {
                 bat 'git config --global user.name "jenkins"'
                 bat 'git status'
                 bat 'git branch'
-                bat 'git checkout release'
+                bat 'git checkout -f release'
                 bat 'git merge dev'
                 withCredentials([string(credentialsId: 'personal_access_token', variable: 'token')]) {
                     bat 'git push https://%token%@github.com/Camillemns/Data_engineering_final_project.git'
@@ -83,7 +83,7 @@ pipeline {
                 bat 'git config --global user.name "jenkins"'
                 bat 'git status'
                 bat 'git branch'
-                bat 'git checkout main'
+                bat 'git checkout -f main'
                 bat 'git merge release'
                 withCredentials([string(credentialsId: 'personal_access_token', variable: 'token')]) {
                     bat 'git push https://%token%@github.com/Camillemns/Data_engineering_final_project.git'
