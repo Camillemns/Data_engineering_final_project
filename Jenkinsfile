@@ -31,7 +31,8 @@ pipeline {
         }
         stage('End to end test') {
             steps {
-                bat 'cd front && npm run test:e2e'
+                bat 'cd front && npx cypress open'
+                bat 'cd front && npx cypress run'
             }
         }
     }
