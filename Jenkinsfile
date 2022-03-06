@@ -20,8 +20,7 @@ pipeline {
         stage('Unit test front') {
             steps {
                 bat 'cd front && npm install'
-                bat 'dir'
-                bat 'npm run test:unit'
+                bat 'cd front && npm run test:unit'
             }
         }
         stage('Stress test back') {
@@ -32,8 +31,7 @@ pipeline {
         }
         stage('End to end test') {
             steps {
-                bat 'dir'
-                bat 'npm run test:e2e'
+                bat 'cd front && npm run test:e2e'
             }
         }
     }
