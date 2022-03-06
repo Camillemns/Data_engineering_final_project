@@ -3,4 +3,5 @@ WORKDIR /code
 COPY * ./
 RUN pip install -r requirements.txt
 RUN sed 's/\r$//' wait-for-it.sh > wait-for-it.sh
+RUN chmod +x wait-for-it.sh
 RUN ls
