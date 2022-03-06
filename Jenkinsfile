@@ -1,6 +1,12 @@
 pipeline {
     agent any
     stages {
+        stage('See the repository') {
+            steps {
+                bat 'ls'
+                bat 'cd front && ls'
+            }
+        }
         stage('Launch Docker Build') {
             steps {
                 bat 'docker-compose build'
