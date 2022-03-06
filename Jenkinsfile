@@ -31,7 +31,8 @@ pipeline {
         }
         stage('Merge unto dev') {
             steps {
-                bat 'echo "launch monitoring"'
+                bat 'echo "merge to dev"'
+                bat 'echo %BRANCH%'
                 git branch: '%BRANCH%',
                     url: 'https://github.com/Camillemns/Data_engineering_final_project.git/'
                 bat 'dir'
