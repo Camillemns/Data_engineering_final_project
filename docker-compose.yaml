@@ -70,4 +70,3 @@ volumes:
   grafana_data: {}
 networks:
   monitor-net: {}
->>>>>>> 0a602c185c41ff5b4ff840647c31bf1ca58727f1
