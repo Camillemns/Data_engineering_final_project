@@ -32,7 +32,8 @@ pipeline {
         stage('Merge unto dev') {
             steps {
                 bat 'echo "merge to dev"'
-                bat 'git pull %BRANCH%'
+                git branch: '%BRANCH#*/%',
+                    url: 'https://github.com/Camillemns/Data_engineering_final_project.git/'
                 bat 'dir'
                 bat 'git config --global user.email "jenkins@localhost"'
                 bat 'git config --global user.name "jenkins"'
