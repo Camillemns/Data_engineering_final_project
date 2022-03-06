@@ -14,6 +14,7 @@ pipeline {
         stage('Unit test front') {
             steps {
                 bat 'cd front && npm install'
+                bat 'ls'
                 bat 'npm run test:unit'
             }
         }
