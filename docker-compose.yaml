@@ -4,11 +4,70 @@ services:
     build: ./back
     ports:
       - "8000:8000"
+      - "8010:8010"
+    networks:
+      - monitor-net
   front:
     build: ./front
     ports:
       - "8070:8070"
+    networks:
+      - monitor-net
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - monitoring:/etc/prometheus
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/rules.yml:/etc/prometheus/rules.yml
+    restart: always
+    networks:
+      - monitor-net
+  alerting:
+    image: prom/alertmanager
+    container_name: alert
+    ports:
+      - 9093:9093
+    volumes:
+      - ./monitoring/alertmanager.yml:/alertmanager.yml
+    restart: always
+    networks:
+      - monitor-net
+  node_exporter:
+    image: prom/node-exporter
+    container_name: node-exporter
+    ports:
+      - 9100:9100
+    restart: always
+    networks:
+      - monitor-net
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      - monitor-net
   tester:
     build: ./test
     depends_on:
       - back
+    networks:
+      - monitor-net
+volumes:
+  monitoring: {}
+  grafana_data: {}
+networks:
+  monitor-net: {}
+>>>>>>> 0a602c185c41ff5b4ff840647c31bf1ca58727f1

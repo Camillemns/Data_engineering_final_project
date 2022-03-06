@@ -1,0 +1,15 @@
+groups:
+  - name: Alerts
+    rules:
+      - alert: InstanceDown
+        expr: up == 0
+        for: 1m
+      - alert: HostOutOfMemory
+        expr: node_memory_MemAvailable / node_memory_MemTotal * 100 < 25
+        for: 5m
+      - alert: HostOutOfDiskSpace
+        expr: (node_filesystem_avail{mountpoint="/"}  * 100) / node_filesystem_size{mountpoint="/"} < 50
+        for: 1s
+      - alert: HostHighCpuLoad
+        expr: (sum by (instance) (irate(node_cpu{job="node_exporter_metrics",mode="idle"}[5m]))) > 80
+        for: 5m
