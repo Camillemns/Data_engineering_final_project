@@ -1,9 +1,11 @@
 global:
-  smtp_smarthost: '<your smtp email provider>'
-  smtp_from: '<your_email@example.com>'
+  smtp_smarthost: 'localhost:25'
+  smtp_from: 'app@localhost.com'
 route:
-  receiver: '<receiver_email@example.com>'
+  receiver: 'alert@localhost.com'
 receivers:
-- name: '<receiver_email@example.com>'
-  email_configs:
-    - to: '<receiver_email@example.com>'
+- name: 'alert@localhost.com'
+  email:
+    - to: 'alert@localhost.com'
+      tls_config:
+        insecure_skip_verify: true
