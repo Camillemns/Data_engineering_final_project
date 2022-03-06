@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Stress test back') {
             steps {
-                bat 'docker-compose up tester'
+                bat 'docker-compose up -d tester'
             }
         }
     }
