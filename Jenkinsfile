@@ -32,7 +32,7 @@ pipeline {
         stage('Merge unto dev') {
             steps {
                 bat 'echo "merge to dev"'
-                bat 'git pull origin %BRANCH%'
+                bat 'git pull %BRANCH%'
                 bat 'dir'
                 bat 'git config --global user.email "jenkins@localhost"'
                 bat 'git config --global user.name "jenkins"'
