@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Stress test back') {
             steps {
-                bat 'docker-compose run tester /bin/sh ./wait-for-it.sh back:8000 --timeout=0 -- python app_test.py
+                bat 'docker-compose run tester /bin/sh ./wait-for-it.sh back:8000 --timeout=0 -- python app_test.py'
             }
         }
     }
